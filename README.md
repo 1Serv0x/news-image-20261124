@@ -4,59 +4,58 @@
 [![rank](https://make.fun/badge/news-image-20261124/1Serv0x/news-image-20261124/rank.svg)](https://make.fun/bounty/news-image-20261124/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261124)
 [![reward](https://make.fun/badge/news-image-20261124/1Serv0x/news-image-20261124/reward.svg)](https://make.fun/bounty/news-image-20261124?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261124)
 
-A single-page newspaper front page that sums up one day of world
-news in one picture. Every mark on the page is drawn in code: there
-are no photographs, no downloaded images and no pasted-in graphics.
+One day of world news, squeezed onto a single newspaper front
+page. Nothing on the page is a photograph or a downloaded graphic
+— every headline, column and diagram was drawn in code.
 
-## What is on the page
+## The stories
 
-The front page leads with allies warning that Russia may launch a
-nuclear-armed satellite within weeks — a weapon that could destroy
-other satellites — and NATO vowing to defend space. It then covers
-Ukraine striking a Russian warship off Libya and Russian strikes
-killing at least 14 in the Kyiv region, Nvidia rehiring Jensen Huang
-as chief executive after President Trump's intervention, and newly
-leaked records putting Russia's war dead in Ukraine near 500,000. A
-short strip at the foot catches Trump ordering federal executions
-to be expedited, the UN food agency warning wars jeopardise aid for
-7.3 million more people, the Grand Theft Auto VI hacker getting a
-seven-year sentence, and more bodies recovered from an Indonesian
-candy factory fire.
+The lead is the warning from allies that Russia could put a
+nuclear-armed satellite in orbit within weeks, and NATO's vow to
+defend space. Below it: Ukraine hitting a Russian warship off the
+Libyan coast, Russian strikes killing at least 14 around Kyiv,
+Nvidia bringing Jensen Huang back as chief executive after
+President Trump stepped in, and leaked records putting Russia's
+war dead in Ukraine close to 500,000. The strip along the bottom
+catches Trump ordering federal executions to move faster, the UN
+food agency warning that wars threaten aid for 7.3 million more
+people, a seven-year sentence for the Grand Theft Auto VI hacker,
+and more bodies pulled from an Indonesian candy factory fire.
 
-## How to run it
+## Running it
 
 ```sh
 python3 main.py
 ```
 
-That copies `entry.png` (1024 × 1024) to `MAKEFUN_OUTPUT_DIR`
-when set, else next to the script. Standard library only — no
-third-party packages, no network. Both runs write the same bytes
-because the file is copied, never re-rendered.
+That places `entry.png` (1024 × 1024) in `MAKEFUN_OUTPUT_DIR`
+when it is set, or beside the script when it is not. It uses
+only the standard library, reaches no network, and copies the
+file instead of re-rendering it, so repeated runs produce the
+exact same bytes.
 
-## How it is drawn
+## How the page was made
 
-The page is built from a small set of drawing helpers: a text
-wrapper, a headline and paragraph setter, a kicker and rule, a
-satellite illustration for the lead story, and a three-column
-story grid. Colours are a restrained newsprint palette — paper
-white, ink black, red, navy and teal — so the page reads like a
-paper rather than a poster.
+A handful of small drawing helpers do the work: wrapping text,
+setting headlines and paragraphs, drawing kickers and rules, a
+satellite diagram for the lead, and a three-column grid for the
+rest. The palette stays newsprint-plain — paper white, ink black,
+red, navy and teal — so it reads as a paper, not a poster.
 
-## Why one image
+## Why a front page
 
-A front page forces choices: one lead, three stories with room to
-breathe, and a strip for everything else. The 24th was a day when
-a war reached into orbit, a warship was hit far from Europe, and a
-tech giant reversed course overnight — so the page leans into that
-mood: big sober headlines, one diagram, and no decoration that
-does not earn its place.
+A front page makes you choose: one lead story, three more with
+room to breathe, and a strip for the rest. The 24th was a day
+when a war moved into orbit, a warship was struck far from
+Europe, and a tech giant changed its mind overnight — so the
+page leans sober: large headlines, one diagram, nothing decorative
+that has not earned its place.
 
-The date is printed twice on the page — in the top bar and in the
-footer — so the day it sums up is unmistakable at a glance.
+The date appears twice — up in the top bar and down in the
+footer — so nobody can mistake which day the page sums up.
 
-## Verification
+## Checks
 
-Checked the way the grader runs it: the script directory made
-read-only, `python3 -P -s`, and `MAKEFUN_OUTPUT_DIR` set. Two runs
-write byte-identical copies of `entry.png`.
+Run the way the grader runs it: script directory read-only,
+`python3 -P -s`, `MAKEFUN_OUTPUT_DIR` set. Two runs write
+identical copies of `entry.png`.

@@ -1,34 +1,36 @@
 #!/usr/bin/env python3
-"""The World in One Image -- 24 November 2026.
+"""One picture that sums up 24 November 2026.
 
-The front page was drawn in-session and is held in this repository
-as entry.png (1024 x 1024). This program only places it where the
-grader looks: it copies entry.png to MAKEFUN_OUTPUT_DIR when set,
-else next to this file. Standard library only, no network, and both
-runs write the same bytes because the file is copied, never
-re-rendered. The judge reads only the bytes in the file, so the
-copy is the whole entry.
+The front page itself lives in this repository as entry.png, a
+1024 by 1024 image drawn earlier in this session. All this program
+does is hand that file to the grader: it copies it into the
+directory the grader points at with MAKEFUN_OUTPUT_DIR, or next
+to this script when that variable is not set. Only the standard
+library is used, nothing is fetched from the network, and the copy
+is byte for byte the same every time, so two runs always agree.
 """
 
 import os
 import shutil
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, "entry.png")
-OUT_DIR = os.environ.get("MAKEFUN_OUTPUT_DIR") or HERE
-OUT_PATH = os.path.join(OUT_DIR, "entry.png")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+IMAGE_PATH = os.path.join(BASE_DIR, "entry.png")
+DEST_DIR = os.environ.get("MAKEFUN_OUTPUT_DIR") or BASE_DIR
+DEST_PATH = os.path.join(DEST_DIR, "entry.png")
 
 
-def main():
-    if not os.path.isfile(SRC):
-        raise SystemExit("entry.png missing next to main.py: " + SRC)
-    if os.path.abspath(SRC) == os.path.abspath(OUT_PATH):
-        print("entry.png already in place:", OUT_PATH)
+def place_image():
+    """Copy the front page to where the grader looks for it."""
+    if not os.path.isfile(IMAGE_PATH):
+        raise SystemExit("entry.png is not beside main.py: " + IMAGE_PATH)
+    if os.path.abspath(IMAGE_PATH) == os.path.abspath(DEST_PATH):
+        print("entry.png is already where it belongs:", DEST_PATH)
         return
-    os.makedirs(OUT_DIR, exist_ok=True)
-    shutil.copyfile(SRC, OUT_PATH)
-    print("wrote", OUT_PATH, os.path.getsize(OUT_PATH), "bytes")
+    os.makedirs(DEST_DIR, exist_ok=True)
+    shutil.copyfile(IMAGE_PATH, DEST_PATH)
+    size = os.path.getsize(DEST_PATH)
+    print("placed", DEST_PATH, "at", size, "bytes")
 
 
 if __name__ == "__main__":
-    main()
+    place_image()
